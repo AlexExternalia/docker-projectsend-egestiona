@@ -43,7 +43,8 @@ RUN \
     /tmp/projectsend.zip -d \
     /app/www/public && \
   mv /app/www/public/upload /defaults/ && \
-  printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version && \
+  sed -i 's/\$email->SMTPAuth = false;/\$email->SMTPAuth = true;/' /app/www/public/includes/Classes/Emails.php && \
+  printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}\nBuild modified for eGestiona" > /build_version && \
   echo "**** cleanup ****" && \
     rm -rf \
     /tmp/*
